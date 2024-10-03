@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 const Index = () => {
   const [currentAd, setCurrentAd] = useState(0);
   const [adColor, setAdColor] = useState('#FFD700');
-  const [showDescription, setShowDescription] = useState(true);
   const ads = [
     "تحتاج مساعدة قانونية؟ لا تدع المشاكل القانونية تعقد حياتك. اتصل بنا الآن للحصول على استشارة موثوقة ومجانية!",
     "حقوقك هي أولويتنا! لدينا الخبرة لحمايتك وتقديم أفضل الحلول القانونية لك. دعنا نرشدك اليوم.",
@@ -37,13 +36,8 @@ const Index = () => {
       setAdColor(`hsl(${Math.random() * 360}, 100%, 50%)`);
     }, 5000);
 
-    const descriptionInterval = setInterval(() => {
-      setShowDescription((prev) => !prev);
-    }, 10000);
-
     return () => {
       clearInterval(adInterval);
-      clearInterval(descriptionInterval);
     };
   }, []);
 
@@ -150,21 +144,6 @@ const Index = () => {
             </motion.div>
           </div>
         </main>
-
-        <AnimatePresence>
-          <motion.div
-            className="fixed bottom-0 left-0 right-0 bg-black bg-opacity-70 p-4 text-white text-center"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-xl">
-              محامٍ متخصص في القضايا المدنية والجنائية مع خبرة تزيد عن 15 عامًا في المحاكم المصرية. 
-              نحن نسعى جاهدين لتقديم أفضل الخدمات القانونية لعملائنا وضمان حقوقهم.
-            </p>
-          </motion.div>
-        </AnimatePresence>
 
         <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500">
           <p>© 2024 مكتب المحامي محمد مصطفى. جميع الحقوق محفوظة.</p>
