@@ -13,7 +13,7 @@ import ContactModal from '@/components/ContactModal';
 
 const Index = () => {
   const [currentAd, setCurrentAd] = useState(0);
-  const [adColor, setAdColor] = useState('#FFD700');
+  const [adColor, setAdColor] = useState('#4A5568');
   const [showBio, setShowBio] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Index = () => {
   React.useEffect(() => {
     const adInterval = setInterval(() => {
       setCurrentAd((prevAd) => (prevAd + 1) % ads.length);
-      setAdColor(`hsl(${Math.random() * 360}, 100%, 50%)`);
+      setAdColor(`hsl(${Math.random() * 360}, 70%, 70%)`);
     }, 5000);
 
     return () => {
@@ -50,13 +50,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center z-0 opacity-30" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
+    <div className="min-h-screen bg-gray-100 text-gray-800 overflow-hidden">
+      <div className="absolute inset-0 bg-cover bg-center z-0 opacity-10" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
       <div className="relative z-10">
-        <header className="p-4 flex flex-col md:flex-row justify-between items-center bg-black bg-opacity-70">
+        <header className="p-4 flex flex-col md:flex-row justify-between items-center bg-white bg-opacity-90 shadow-md">
           <Button 
             variant="outline" 
-            className="text-white border-white bg-gray-800 hover:bg-white hover:text-black mb-2 md:mb-0"
+            className="text-gray-800 border-gray-800 bg-white hover:bg-gray-200 mb-2 md:mb-0"
             onClick={handleLogout}
           >
             تسجيل خروج
@@ -64,34 +64,34 @@ const Index = () => {
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto">
+                <Button variant="outline" className="text-gray-800 border-gray-800 bg-white hover:bg-gray-200 w-full md:w-auto">
                   القضايا
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 text-white">
+              <DropdownMenuContent className="bg-white text-gray-800">
                 {cases.map((caseItem, index) => (
-                  <DropdownMenuItem key={index} className="hover:bg-gray-700">{caseItem}</DropdownMenuItem>
+                  <DropdownMenuItem key={index} className="hover:bg-gray-100">{caseItem}</DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto">
+                <Button variant="outline" className="text-gray-800 border-gray-800 bg-white hover:bg-gray-200 w-full md:w-auto">
                   مكتبة الصور
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 text-white">
-                <DropdownMenuItem className="hover:bg-gray-700">
+              <DropdownMenuContent className="bg-white text-gray-800">
+                <DropdownMenuItem className="hover:bg-gray-100">
                   <Link to="/photo-gallery">إضافة صور</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-gray-700">
+                <DropdownMenuItem className="hover:bg-gray-100">
                   <Link to="/photo-gallery">إضافة فيديو</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Button 
               variant="outline" 
-              className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto"
+              className="text-gray-800 border-gray-800 bg-white hover:bg-gray-200 w-full md:w-auto"
               onClick={() => setShowContactModal(true)}
             >
               اتصل بنا
@@ -108,7 +108,7 @@ const Index = () => {
             repeat: Infinity, 
             ease: "linear"
           }}
-          className="p-2 text-black text-center font-bold text-sm md:text-base"
+          className="p-2 text-white text-center font-bold text-sm md:text-base"
           style={{ backgroundColor: adColor }}
         >
           {ads[currentAd]}
@@ -121,16 +121,16 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             style={{
-              color: '#FFD700',
-              textShadow: '0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700'
+              color: '#2D3748',
+              textShadow: '0 0 10px #A0AEC0, 0 0 20px #A0AEC0, 0 0 30px #A0AEC0, 0 0 40px #A0AEC0'
             }}
           >
-            المحامي محمد مصطفى
+            أ. محمد مصطفى
           </motion.h1>
 
           <div className="text-center">
             <motion.button
-              className="text-xl md:text-2xl text-gold-500 hover:text-white transition-colors duration-300"
+              className="text-xl md:text-2xl text-gray-700 hover:text-gray-900 transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setShowBio(!showBio)}
@@ -147,14 +147,11 @@ const Index = () => {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.5 }}
-                className="mt-5 bg-black bg-opacity-70 rounded-lg shadow-lg p-4 md:p-8"
+                className="mt-5 bg-white bg-opacity-90 rounded-lg shadow-lg p-4 md:p-8"
               >
-                <h2 className="text-xl md:text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h2>
-                <p className="text-white text-sm md:text-base">
-                  المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
-                  مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
-                  قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
-                  العدالة في كل قضية يتولاها.
+                <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">نبذة عن المحامي</h2>
+                <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                  أ. محمد مصطفى هو اسم بارز في عالم القانون المصري، بخبرة تفوق 15 عامًا في القضايا المدنية والجنائية. يتمتع بسمعة راسخة كخبير قانوني متميز يجمع بين الاحترافية والإنسانية، حيث يكرس جهوده لضمان تحقيق العدالة والدفاع عن حقوق موكليه بكل إخلاص. بفضل معرفته العميقة بالقوانين المصرية واستراتيجياته القانونية الذكية، يقدم أ. محمد مصطفى حلولًا قانونية مبتكرة وفعالة، مما يجعله الاختيار الأمثل لمن يبحث عن الثقة والنجاح في أروقة المحاكم.
                 </p>
               </motion.div>
             )}
@@ -162,7 +159,7 @@ const Index = () => {
 
           <div className="flex justify-center md:justify-end mt-10">
             <motion.div
-              className="w-48 h-48 md:w-64 md:h-64 bg-white bg-opacity-10 rounded-lg shadow-lg overflow-hidden"
+              className="w-48 h-48 md:w-64 md:h-64 bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -181,8 +178,8 @@ const Index = () => {
           </div>
         </main>
 
-        <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500 text-sm md:text-base">
-          <p>© 2024 مكتب المحامي محمد مصطفى. جميع الحقوق محفوظة.</p>
+        <footer className="mt-20 p-4 text-center bg-gray-800 text-white text-sm md:text-base">
+          <p>© 2024 مكتب أ. محمد مصطفى. جميع الحقوق محفوظة.</p>
         </footer>
       </div>
       <ContactModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
