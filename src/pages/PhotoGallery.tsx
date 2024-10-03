@@ -7,11 +7,10 @@ const PhotoGallery = () => {
   const [images, setImages] = useState<string[]>([]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    if (!target || !target.files) {
+    if (!e.target || !e.target.files) {
       return;
     }
-    const files = Array.from(target.files);
+    const files = Array.from(e.target.files);
     files.forEach(file => {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
