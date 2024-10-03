@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 const Index = () => {
   const [currentAd, setCurrentAd] = useState(0);
   const [adColor, setAdColor] = useState('#FFD700');
+  const [showBio, setShowBio] = useState(false);
+
   const ads = [
     "تحتاج مساعدة قانونية؟ لا تدع المشاكل القانونية تعقد حياتك. اتصل بنا الآن للحصول على استشارة موثوقة ومجانية!",
     "حقوقك هي أولويتنا! لدينا الخبرة لحمايتك وتقديم أفضل الحلول القانونية لك. دعنا نرشدك اليوم.",
@@ -40,6 +42,22 @@ const Index = () => {
       clearInterval(adInterval);
     };
   }, []);
+
+  useEffect(() => {
+    const bioInterval = setInterval(() => {
+      setShowBio((prev) => !prev);
+    }, 5000);
+
+    return () => {
+      clearInterval(bioInterval);
+    };
+  }, []);
+
+  const handleContactClick = () => {
+    // Implement contact functionality here
+    console.log("Contact button clicked");
+    // You can open a modal, redirect to a contact page, or show contact information
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 overflow-hidden">
@@ -77,17 +95,19 @@ const Index = () => {
                 مكتبة الصور
               </Button>
             </Link>
-            <Button variant="outline" className="text-blue-900 border-blue-900 bg-white hover:bg-blue-100">
+            <Button 
+              variant="outline" 
+              className="text-blue-900 border-blue-900 bg-white hover:bg-blue-100"
+              onClick={handleContactClick}
+            >
               اتصل بنا
-              <FaWhatsapp className="mr-2" />
-              <FaFacebookF className="mr-2" />
             </Button>
           </div>
         </header>
 
         <motion.div
           initial={{ x: '-100%' }}
-          animate={{ x: '100%' }}
+          animate={{ x: '0%' }}
           transition={{ 
             duration: 15, 
             repeat: Infinity, 
@@ -118,28 +138,33 @@ const Index = () => {
               <iframe
                 width="100%"
                 height="315"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="YouTube video player"
+                src="https://www.youtube.com/embed/your-law-practice-video-id"
+                title="مكتب المحاماة"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="bg-white bg-opacity-90 rounded-lg shadow-lg p-8"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-blue-900">نبذة عن المحامي</h2>
-              <p className="text-gray-700">
-                المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
-                مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
-                قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
-                العدالة في كل قضية يتولاها.
-              </p>
-            </motion.div>
+            <AnimatePresence>
+              {showBio && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white bg-opacity-90 rounded-lg shadow-lg p-8"
+                >
+                  <h2 className="text-2xl font-bold mb-4 text-blue-900">نبذة عن المحامي</h2>
+                  <p className="text-gray-700">
+                    المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
+                    مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
+                    قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
+                    العدالة في كل قضية يتولاها.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <div className="w-full md:w-1/2 pl-8 mt-8 md:mt-0">
