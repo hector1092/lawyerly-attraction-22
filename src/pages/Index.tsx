@@ -46,8 +46,6 @@ const Index = () => {
   }, []);
 
   const handleLogout = () => {
-    // Here you would typically handle the logout logic
-    // For now, we'll just redirect to the login page
     navigate('/login');
   };
 
@@ -55,18 +53,18 @@ const Index = () => {
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
       <div className="absolute inset-0 bg-cover bg-center z-0 opacity-30" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
       <div className="relative z-10">
-        <header className="p-4 flex justify-between items-center bg-black bg-opacity-70">
+        <header className="p-4 flex flex-col md:flex-row justify-between items-center bg-black bg-opacity-70">
           <Button 
             variant="outline" 
-            className="text-white border-white bg-gray-800 hover:bg-white hover:text-black"
+            className="text-white border-white bg-gray-800 hover:bg-white hover:text-black mb-2 md:mb-0"
             onClick={handleLogout}
           >
             تسجيل خروج
           </Button>
-          <div className="flex space-x-4">
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
+                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto">
                   القضايا
                 </Button>
               </DropdownMenuTrigger>
@@ -78,7 +76,7 @@ const Index = () => {
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
+                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto">
                   مكتبة الصور
                 </Button>
               </DropdownMenuTrigger>
@@ -93,7 +91,7 @@ const Index = () => {
             </DropdownMenu>
             <Button 
               variant="outline" 
-              className="text-white border-white bg-gray-800 hover:bg-white hover:text-black"
+              className="text-white border-white bg-gray-800 hover:bg-white hover:text-black w-full md:w-auto"
               onClick={() => setShowContactModal(true)}
             >
               اتصل بنا
@@ -110,7 +108,7 @@ const Index = () => {
             repeat: Infinity, 
             ease: "linear"
           }}
-          className="p-2 text-black text-center font-bold"
+          className="p-2 text-black text-center font-bold text-sm md:text-base"
           style={{ backgroundColor: adColor }}
         >
           {ads[currentAd]}
@@ -118,7 +116,7 @@ const Index = () => {
 
         <main className="container mx-auto mt-10 px-4">
           <motion.h1 
-            className="text-6xl font-bold text-center mb-10"
+            className="text-4xl md:text-6xl font-bold text-center mb-10"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -132,7 +130,7 @@ const Index = () => {
 
           <div className="text-center">
             <motion.button
-              className="text-2xl text-gold-500 hover:text-white transition-colors duration-300"
+              className="text-xl md:text-2xl text-gold-500 hover:text-white transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setShowBio(!showBio)}
@@ -149,10 +147,10 @@ const Index = () => {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.5 }}
-                className="mt-5 bg-black bg-opacity-70 rounded-lg shadow-lg p-8"
+                className="mt-5 bg-black bg-opacity-70 rounded-lg shadow-lg p-4 md:p-8"
               >
-                <h2 className="text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h2>
-                <p className="text-white">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h2>
+                <p className="text-white text-sm md:text-base">
                   المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
                   مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
                   قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
@@ -162,14 +160,14 @@ const Index = () => {
             )}
           </AnimatePresence>
 
-          <div className="flex justify-end mt-10">
+          <div className="flex justify-center md:justify-end mt-10">
             <motion.div
-              className="w-64 h-64 bg-white bg-opacity-10 rounded-lg shadow-lg overflow-hidden"
+              className="w-48 h-48 md:w-64 md:h-64 bg-white bg-opacity-10 rounded-lg shadow-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center justify-center h-full text-gray-500">
+              <div className="flex items-center justify-center h-full text-gray-500 text-sm md:text-base">
                 سيتم إضافة صورة هنا
               </div>
             </motion.div>
@@ -183,7 +181,7 @@ const Index = () => {
           </div>
         </main>
 
-        <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500">
+        <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500 text-sm md:text-base">
           <p>© 2024 مكتب المحامي محمد مصطفى. جميع الحقوق محفوظة.</p>
         </footer>
       </div>
