@@ -1,15 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
+import MovingAd from '@/components/MovingAd';
 
 const Index = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Here you would typically clear any authentication tokens or user data
-    // For now, we'll just redirect to the login page
     navigate('/login');
   };
 
@@ -37,6 +35,8 @@ const Index = () => {
             المحامي محمد مصطفى
           </motion.h1>
         </header>
+
+        <MovingAd />
 
         <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
           <div className="absolute inset-0 bg-cover bg-center z-0 opacity-30" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
