@@ -13,9 +13,9 @@ const PhotoGallery = () => {
     const files = Array.from(e.target.files);
     files.forEach(file => {
       const reader = new FileReader();
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        if (e.target && typeof e.target.result === 'string') {
-          setImages(prevImages => [...prevImages, e.target.result as string]);
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        if (event.target && typeof event.target.result === 'string') {
+          setImages(prevImages => [...prevImages, event.target.result as string]);
         }
       };
       reader.readAsDataURL(file);
