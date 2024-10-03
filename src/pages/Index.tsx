@@ -99,28 +99,27 @@ const Index = () => {
           {ads[currentAd]}
         </motion.div>
 
-        <main className="container mx-auto mt-10 px-4">
-          <motion.h2
-            className="text-6xl font-bold text-center mb-10"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              color: '#FFD700',
-              textShadow: '0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700'
-            }}
-          >
-            المحامي محمد مصطفى
-          </motion.h2>
-
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <main className="container mx-auto mt-10 px-4 flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 pr-8">
             <motion.div
-              className="w-full md:w-1/2 pr-8"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <h3 className="text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h3>
+              <video controls className="w-full max-w-3xl mx-auto">
+                <source src="/lawyer-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-black bg-opacity-70 rounded-lg shadow-lg p-8"
+            >
+              <h2 className="text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h2>
               <p className="text-white">
                 المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
                 مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
@@ -128,17 +127,19 @@ const Index = () => {
                 العدالة في كل قضية يتولاها.
               </p>
             </motion.div>
+          </div>
 
+          <div className="w-full md:w-1/2 pl-8 mt-8 md:mt-0">
             <motion.div
-              className="w-full md:w-1/2 mt-8 md:mt-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white p-4 rounded-lg shadow-lg"
             >
               <img 
                 src="/lawyer-image.jpg" 
                 alt="المحامي محمد مصطفى" 
-                className="w-full h-auto rounded-lg object-cover shadow-lg"
+                className="w-full h-auto rounded-lg object-cover"
               />
             </motion.div>
           </div>
