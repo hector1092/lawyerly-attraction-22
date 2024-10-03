@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ContactModal from '@/components/ContactModal';
 
 const Index = () => {
@@ -16,6 +16,7 @@ const Index = () => {
   const [adColor, setAdColor] = useState('#FFD700');
   const [showBio, setShowBio] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
+  const navigate = useNavigate();
   const ads = [
     "تحتاج مساعدة قانونية؟ لا تدع المشاكل القانونية تعقد حياتك. اتصل بنا الآن للحصول على استشارة موثوقة ومجانية!",
     "حقوقك هي أولويتنا! لدينا الخبرة لحمايتك وتقديم أفضل الحلول القانونية لك. دعنا نرشدك اليوم.",
@@ -44,13 +45,25 @@ const Index = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    // Here you would typically handle the logout logic
+    // For now, we'll just redirect to the login page
+    navigate('/login');
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
       <div className="absolute inset-0 bg-cover bg-center z-0 opacity-30" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
       <div className="relative z-10">
         <header className="p-4 flex justify-between items-center bg-black bg-opacity-70">
-          <div className="flex-1"></div>
-          <div className="flex-1 flex justify-end space-x-4">
+          <Button 
+            variant="outline" 
+            className="text-white border-white bg-gray-800 hover:bg-white hover:text-black"
+            onClick={handleLogout}
+          >
+            تسجيل خروج
+          </Button>
+          <div className="flex space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
@@ -61,6 +74,21 @@ const Index = () => {
                 {cases.map((caseItem, index) => (
                   <DropdownMenuItem key={index} className="hover:bg-gray-700">{caseItem}</DropdownMenuItem>
                 ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
+                  مكتبة الصور
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 text-white">
+                <DropdownMenuItem className="hover:bg-gray-700">
+                  <Link to="/photo-gallery">إضافة صور</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-gray-700">
+                  <Link to="/photo-gallery">إضافة فيديو</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Button 

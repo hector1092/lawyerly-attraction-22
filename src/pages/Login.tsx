@@ -11,20 +11,24 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically validate the credentials
-    // For now, we'll just redirect to the home page
-    navigate('/');
+    if (username === 'admin' && password === 'admin1234') {
+      // Successful login
+      navigate('/');
+    } else {
+      // Failed login
+      alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+    }
   };
 
   return (
-    <div className="min-h-screen bg-emerald-900 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <motion.div 
         className="bg-white p-8 rounded-lg shadow-lg w-96"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-3xl font-bold mb-6 text-emerald-800 text-center">تسجيل الدخول</h2>
+        <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">تسجيل الدخول</h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700">اسم المستخدم</label>
@@ -48,7 +52,7 @@ const Login = () => {
               required
             />
           </div>
-          <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
             دخول
           </Button>
         </form>
