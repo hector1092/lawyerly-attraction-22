@@ -4,14 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const PhotoGallery = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<string[]>([]);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setImages([...images, e.target.result]);
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result && typeof e.target.result === 'string') {
+          setImages(prevImages => [...prevImages, e.target.result]);
+        }
       };
       reader.readAsDataURL(file);
     }
