@@ -85,6 +85,21 @@ const Index = () => {
           </div>
         </header>
 
+        {/* إضافة العنوان في الجزء العلوي الأيمن */}
+        <div className="absolute top-4 right-4 z-20">
+          <motion.h2
+            className="text-3xl font-bold text-gold-500"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              textShadow: '0 0 10px #FFD700, 0 0 20px #FFD700'
+            }}
+          >
+            المحامي محمد مصطفى
+          </motion.h2>
+        </div>
+
         <motion.div
           initial={{ x: '-100%' }}
           animate={{ x: '100%' }}
