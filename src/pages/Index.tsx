@@ -68,22 +68,22 @@ const Index = () => {
           <div className="flex-1 flex justify-end space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+                <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
                   القضايا
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-gray-800 text-white">
                 {cases.map((caseItem, index) => (
-                  <DropdownMenuItem key={index}>{caseItem}</DropdownMenuItem>
+                  <DropdownMenuItem key={index} className="hover:bg-gray-700">{caseItem}</DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
             <Link to="/photo-gallery">
-              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+              <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
                 مكتبة الصور
               </Button>
             </Link>
-            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+            <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
               اتصل بنا
               <FaWhatsapp className="mr-2" />
               <FaFacebookF className="mr-2" />
@@ -92,8 +92,8 @@ const Index = () => {
         </header>
 
         <motion.div
-          initial={{ x: '100%' }}
-          animate={{ x: '-100%' }}
+          initial={{ x: '-100%' }}
+          animate={{ x: '100%' }}
           transition={{ 
             duration: 15, 
             repeat: Infinity, 
@@ -145,27 +145,25 @@ const Index = () => {
               <img 
                 src="/lawyer-image.jpg" 
                 alt="المحامي محمد مصطفى" 
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg object-cover"
               />
             </motion.div>
           </div>
         </main>
 
         <AnimatePresence>
-          {showDescription && (
-            <motion.div
-              className="fixed bottom-0 left-0 right-0 bg-black bg-opacity-70 p-4 text-white text-center"
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 100 }}
-              transition={{ duration: 0.5 }}
-            >
-              <p className="text-xl">
-                محامٍ متخصص في القضايا المدنية والجنائية مع خبرة تزيد عن 15 عامًا في المحاكم المصرية. 
-                نحن نسعى جاهدين لتقديم أفضل الخدمات القانونية لعملائنا وضمان حقوقهم.
-              </p>
-            </motion.div>
-          )}
+          <motion.div
+            className="fixed bottom-0 left-0 right-0 bg-black bg-opacity-70 p-4 text-white text-center"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-xl">
+              محامٍ متخصص في القضايا المدنية والجنائية مع خبرة تزيد عن 15 عامًا في المحاكم المصرية. 
+              نحن نسعى جاهدين لتقديم أفضل الخدمات القانونية لعملائنا وضمان حقوقهم.
+            </p>
+          </motion.div>
         </AnimatePresence>
 
         <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500">
