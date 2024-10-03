@@ -12,11 +12,11 @@ const LawyerInfo = () => {
       <img
         src="/lawyer-image.jpg"
         alt="المحامي محمد مصطفى"
-        className="w-64 h-64 rounded-full mx-auto object-cover shadow-lg"
+        className="w-64 h-64 rounded-full mx-auto md:mx-0 object-cover shadow-lg mb-6 md:mb-0 md:mr-10"
       />
-      <div className="mt-6 md:mt-0 md:ml-10 text-center md:text-right">
+      <div className="text-center md:text-right">
         <h2 className="text-3xl font-bold mb-4">المحامي محمد مصطفى</h2>
-        <p className="text-xl">
+        <p className="text-xl text-gray-600">
           محامٍ متخصص في القضايا المدنية والجنائية مع خبرة تزيد عن 15 عامًا في المحاكم المصرية.
           نحن نسعى جاهدين لتقديم أفضل الخدمات القانونية لعملائنا وضمان حقوقهم.
         </p>
