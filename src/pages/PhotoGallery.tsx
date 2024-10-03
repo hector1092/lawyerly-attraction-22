@@ -8,13 +8,7 @@ const PhotoGallery = () => {
   const [video, setVideo] = useState<string | null>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
-    
-    if (!target || !target.files) {
-      return;
-    }
-
-    const file = target.files[0];
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
@@ -27,13 +21,7 @@ const PhotoGallery = () => {
   };
 
   const handleVideoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
-    
-    if (!target || !target.files) {
-      return;
-    }
-
-    const file = target.files[0];
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
