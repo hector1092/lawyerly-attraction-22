@@ -52,6 +52,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        gold: {
+          500: "#FFD700",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

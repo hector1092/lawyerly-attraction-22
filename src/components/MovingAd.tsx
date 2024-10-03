@@ -5,10 +5,14 @@ import { FaWhatsapp } from 'react-icons/fa';
 const MovingAd = () => {
   return (
     <motion.div
-      className="bg-yellow-400 p-2 text-black flex items-center justify-center"
+      className="bg-gold-500 p-2 text-black flex items-center justify-center overflow-hidden"
       initial={{ x: '-100%' }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      animate={{ x: '100%' }}
+      transition={{ 
+        duration: 15, 
+        repeat: Infinity, 
+        ease: "linear"
+      }}
     >
       <FaWhatsapp className="mr-2 text-green-600" />
       <span>تواصل معنا على الواتساب: 123456789</span>
