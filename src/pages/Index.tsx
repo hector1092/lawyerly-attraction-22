@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaFacebookF, FaWhatsapp, FaInfoCircle } from 'react-icons/fa';
+import { FaFacebookF, FaWhatsapp, FaInfoCircle, FaPhone } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -9,11 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Link } from 'react-router-dom';
+import ContactModal from '@/components/ContactModal';
+import ImageGallery from '@/components/ImageGallery';
 
 const Index = () => {
   const [currentAd, setCurrentAd] = useState(0);
   const [adColor, setAdColor] = useState('#FFD700');
   const [showBio, setShowBio] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
   const ads = [
     "تحتاج مساعدة قانونية؟ لا تدع المشاكل القانونية تعقد حياتك. اتصل بنا الآن للحصول على استشارة موثوقة ومجانية!",
     "حقوقك هي أولويتنا! لدينا الخبرة لحمايتك وتقديم أفضل الحلول القانونية لك. دعنا نرشدك اليوم.",
@@ -66,10 +69,13 @@ const Index = () => {
                 مكتبة الصور
               </Button>
             </Link>
-            <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
+            <Button 
+              variant="outline" 
+              className="text-white border-white bg-gray-800 hover:bg-white hover:text-black"
+              onClick={() => setShowContactModal(true)}
+            >
               اتصل بنا
-              <FaWhatsapp className="mr-2" />
-              <FaFacebookF className="mr-2" />
+              <FaPhone className="mr-2" />
             </Button>
           </div>
         </header>
@@ -134,6 +140,8 @@ const Index = () => {
             )}
           </AnimatePresence>
 
+          <ImageGallery />
+
           <div className="mt-10">
             <video controls className="w-full max-w-3xl mx-auto">
               <source src="/lawyer-video.mp4" type="video/mp4" />
@@ -146,6 +154,7 @@ const Index = () => {
           <p>© 2024 مكتب المحامي محمد مصطفى. جميع الحقوق محفوظة.</p>
         </footer>
       </div>
+      <ContactModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
     </div>
   );
 };
