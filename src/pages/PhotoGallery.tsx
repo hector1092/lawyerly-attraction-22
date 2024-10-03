@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const PhotoGallery = () => {
+  const [images, setImages] = useState([]);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImages([...images, e.target.result]);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8">
       <motion.h1
@@ -15,13 +28,25 @@ const PhotoGallery = () => {
         مكتبة الصور
       </motion.h1>
       
+      <div className="mb-8">
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="hidden"
+          id="image-upload"
+        />
+        <label htmlFor="image-upload" className="cursor-pointer bg-gold-500 text-black px-4 py-2 rounded hover:bg-gold-600 transition-colors">
+          إضافة صورة
+        </label>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Add your photo gallery items here */}
-        <div className="bg-black bg-opacity-50 p-4 rounded-lg">
-          <img src="/placeholder-image.jpg" alt="صورة توضيحية" className="w-full h-64 object-cover rounded mb-4" />
-          <p className="text-center">وصف الصورة</p>
-        </div>
-        {/* Repeat the above div for more images */}
+        {images.map((image, index) => (
+          <div key={index} className="bg-black bg-opacity-50 p-4 rounded-lg">
+            <img src={image} alt={`صورة ${index + 1}`} className="w-full h-64 object-cover rounded mb-4" />
+          </div>
+        ))}
       </div>
 
       <div className="mt-8 text-center">
