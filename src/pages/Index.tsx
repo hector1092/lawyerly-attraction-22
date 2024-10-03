@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 const Index = () => {
   const [currentAd, setCurrentAd] = useState(0);
   const [adColor, setAdColor] = useState('#FFD700');
-  const [showBio, setShowBio] = useState(false);
   const ads = [
     "تحتاج مساعدة قانونية؟ لا تدع المشاكل القانونية تعقد حياتك. اتصل بنا الآن للحصول على استشارة موثوقة ومجانية!",
     "حقوقك هي أولويتنا! لدينا الخبرة لحمايتك وتقديم أفضل الحلول القانونية لك. دعنا نرشدك اليوم.",
@@ -31,7 +30,7 @@ const Index = () => {
     "قضايا الملكية الفكرية"
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const adInterval = setInterval(() => {
       setCurrentAd((prevAd) => (prevAd + 1) % ads.length);
       setAdColor(`hsl(${Math.random() * 360}, 100%, 50%)`);
@@ -47,12 +46,7 @@ const Index = () => {
       <div className="absolute inset-0 bg-cover bg-center z-0 opacity-30" style={{backgroundImage: "url('/lawyer-background.jpg')"}} />
       <div className="relative z-10">
         <header className="p-4 flex justify-between items-center bg-black bg-opacity-70">
-          <Button 
-            variant="outline" 
-            className="text-white border-white bg-red-600 hover:bg-red-700"
-          >
-            تسجيل خروج
-          </Button>
+          <div className="flex-1"></div>
           <motion.h1 
             className="text-4xl font-bold text-center flex-1"
             initial={{ opacity: 0, y: -50 }}
@@ -65,7 +59,7 @@ const Index = () => {
           >
             المحامي محمد مصطفى
           </motion.h1>
-          <div className="flex justify-end space-x-4">
+          <div className="flex-1 flex justify-end space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="text-white border-white bg-gray-800 hover:bg-white hover:text-black">
@@ -105,36 +99,50 @@ const Index = () => {
           {ads[currentAd]}
         </motion.div>
 
-        <main className="container mx-auto mt-10 px-4">
-          <motion.div
-            className="mb-10 text-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl font-bold mb-4 text-gold-500">المحامي محمد مصطفى</h2>
-            <Button
-              onClick={() => setShowBio(!showBio)}
-              className="bg-gold-500 text-black hover:bg-gold-600 transition-colors"
+        <main className="container mx-auto mt-10 px-4 flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 pr-8">
+            <motion.div
+              className="mb-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
-              نبذة عن المحامي
-            </Button>
-          </motion.div>
+              <video controls className="w-full max-w-3xl mx-auto">
+                <source src="/lawyer-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </motion.div>
 
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: showBio ? 'auto' : 0, opacity: showBio ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-black bg-opacity-70 rounded-lg shadow-lg p-8 overflow-hidden"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h3>
-            <p className="text-white">
-              المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
-              مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
-              قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
-              العدالة في كل قضية يتولاها.
-            </p>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-black bg-opacity-70 rounded-lg shadow-lg p-8"
+            >
+              <h2 className="text-2xl font-bold mb-4 text-gold-500">نبذة عن المحامي</h2>
+              <p className="text-white">
+                المحامي محمد مصطفى هو خبير قانوني متميز في مجال القضايا المدنية والجنائية. 
+                مع خبرة تزيد عن 15 عامًا في المحاكم المصرية، يتميز بقدرته على تقديم حلول 
+                قانونية فعالة وموثوقة لعملائه. يسعى دائمًا لضمان حقوق موكليه وتحقيق 
+                العدالة في كل قضية يتولاها.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="w-full md:w-1/2 pl-8 mt-8 md:mt-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white p-4 rounded-lg shadow-lg"
+            >
+              <img 
+                src="/lawyer-image.jpg" 
+                alt="المحامي محمد مصطفى" 
+                className="w-full h-auto rounded-lg object-cover"
+              />
+            </motion.div>
+          </div>
         </main>
 
         <footer className="mt-20 p-4 text-center bg-black bg-opacity-70 text-gold-500">
