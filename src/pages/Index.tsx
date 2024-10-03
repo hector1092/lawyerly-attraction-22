@@ -134,18 +134,18 @@ const Index = () => {
             )}
           </AnimatePresence>
 
-          <motion.div
-            className="mt-10 bg-white bg-opacity-10 rounded-lg shadow-lg p-8 max-w-2xl mx-auto"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden">
+          <div className="flex justify-end mt-10">
+            <motion.div
+              className="w-64 h-64 bg-white bg-opacity-10 rounded-lg shadow-lg overflow-hidden"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="flex items-center justify-center h-full text-gray-500">
                 سيتم إضافة صورة هنا
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           <div className="mt-10">
             <video controls className="w-full max-w-3xl mx-auto">
