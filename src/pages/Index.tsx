@@ -147,12 +147,11 @@ const Index = () => {
             </motion.div>
           </div>
 
-          <div className="mt-10 text-center">
-            <Link to="/photo-gallery">
-              <Button variant="outline" className="text-gold-500 border-gold-500 hover:bg-gold-500 hover:text-black">
-                مكتبة الصور
-              </Button>
-            </Link>
+          <div className="mt-10">
+            <video controls className="w-full max-w-3xl mx-auto">
+              <source src="/lawyer-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </main>
 
